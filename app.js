@@ -24,19 +24,30 @@ app.set('view engine', 'ejs');
 
 app.get('/', async (req, res) => {
   const { page = 1, limit = 10 } = req.query;
-  
+  const currentPage = parseInt(page, 10);
+  const limitBooks = parseInt(limit, 10);
+
   try {
     const livros = await Livro.find()
-      .limit(limit * 1)
-      .skip((page - 1) * limit)
+      .limit(limitBooks)
+      .skip((currentPage - 1) * limitBooks)
       .exec();
-      
+
     const count = await Livro.countDocuments();
-    
+
+    const totalPages = Math.ceil(count / limitBooks);
+
+    const startIndex = (currentPage - 1) * limitBooks + 1;
+    const endIndex = Math.min(currentPage * limitBooks, count);
+
     res.render('index', {
       livros,
-      totalPages: Math.ceil(count / limit),
-      currentPage: page
+      totalPages,
+      currentPage,
+      startIndex,
+      endIndex,
+      count,
+      limitBooks
     });
   } catch (err) {
     console.error(err);

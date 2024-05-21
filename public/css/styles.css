@@ -59,3 +59,8 @@ td {
 .pagination a.active {
   background-color: #222;
 }
+
+.pagination a.disabled {
+  background-color: #999;
+  pointer-events: none;
+}

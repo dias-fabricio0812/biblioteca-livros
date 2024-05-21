@@ -34,11 +34,15 @@
       </tbody>
     </table>
     <div class="pagination">
-      <% for (let i = 1; i <= totalPages; i++) { %>
+      <a href="/?page=1" class="<%= currentPage == 1 ? 'disabled' : '' %>"><<<</a>
+      <a href="/?page=<%= currentPage > 1 ? currentPage - 1 : 1 %>" class="<%= currentPage == 1 ? 'disabled' : '' %>"><<</a>
+      <% for (let i = Math.max(1, currentPage - 2); i <= Math.min(totalPages, currentPage + 2); i++) { %>
         <a href="/?page=<%= i %>" class="<%= i == currentPage ? 'active' : '' %>"><%= i %></a>
       <% } %>
+      <a href="/?page=<%= currentPage < totalPages ? currentPage + 1 : totalPages %>" class="<%= currentPage == totalPages ? 'disabled' : '' %>">>></a>
+      <a href="/?page=<%= totalPages %>" class="<%= currentPage == totalPages ? 'disabled' : '' %>">>>></a>
     </div>
-    <p>Exibindo página <%= currentPage %> de <%= totalPages %></p>
+    <p>Exibindo de <%= startIndex %> até <%= endIndex %> de <%= count %> livros</p>
   </div>
 </body>
 </html>
