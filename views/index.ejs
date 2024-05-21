@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo de livros</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Catálogo de livros</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Título</th>
+          <th>Autor</th>
+          <th>ISBN</th>
+          <th>Páginas</th>
+          <th>Ano</th>
+          <th>Valor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% livros.forEach(livro => { %>
+          <tr>
+            <td><%= livro.titulo %></td>
+            <td><%= livro.autor %></td>
+            <td><%= livro.isbn %></td>
+            <td><%= livro.paginas %></td>
+            <td><%= livro.ano %></td>
+            <td>R$ <%= livro.valor.toFixed(2) %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+    <div class="pagination">
+      <% for (let i = 1; i <= totalPages; i++) { %>
+        <a href="/?page=<%= i %>" class="<%= i == currentPage ? 'active' : '' %>"><%= i %></a>
+      <% } %>
+    </div>
+    <p>Exibindo página <%= currentPage %> de <%= totalPages %></p>
+  </div>
+</body>
+</html>
