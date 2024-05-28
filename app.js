@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const PORT = 3000;
 
-mongoose.connect('mongodb://localhost:27017/biblioteca', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb://localhost:27017/livros', { useNewUrlParser: true, useUnifiedTopology: true });
 
 const livroSchema = new mongoose.Schema({
   titulo: String,
@@ -16,7 +16,7 @@ const livroSchema = new mongoose.Schema({
   valor: Number
 });
 
-const Livro = mongoose.model('Livro', livroSchema);
+const Livro = mongoose.model('Livro', livroSchema, 'livro');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
