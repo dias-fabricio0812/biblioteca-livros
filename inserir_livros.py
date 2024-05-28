@@ -4,7 +4,7 @@ import time
 
 # Parâmetros de conexão
 conexao_uri = "mongodb://localhost:27017/"
-nome_banco_dados = "biblioteca"
+nome_banco_dados = "livros"
 
 contador = 1
 
@@ -17,7 +17,7 @@ try:
     # Selecionar o banco de dados e a coleção
     banco_dado_mongo = conexao_mongo[nome_banco_dados]
     # Selecionar a coleção
-    colecao = banco_dado_mongo["livros"]
+    colecao = banco_dado_mongo["livro"]
 
     # Abre o arquivo CSV em modo de leitura
     # Abra o arquivo
