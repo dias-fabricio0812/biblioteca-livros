@@ -37,13 +37,34 @@
       <a href="/?page=1" class="<%= currentPage == 1 ? 'disabled' : '' %>"><<<</a>
       <a href="/?page=<%= currentPage > 1 ? currentPage - 1 : 1 %>" class="<%= currentPage == 1 ? 'disabled' : '' %>"><<</a>
       <% 
-        let startPage = Math.max(1, currentPage - 3);
-        let endPage = Math.min(totalPages, currentPage + 3);
-        if (endPage - startPage < 6) {
-          if (startPage === 1) {
-            endPage = Math.min(totalPages, startPage + 6);
-          } else if (endPage === totalPages) {
-            startPage = Math.max(1, endPage - 6);
+        let startPage, endPage;
+        if (currentPage === 1) {
+          startPage = 1;
+          endPage = 4;
+        } else if (currentPage === 2) {
+          startPage = 1;
+          endPage = 5;
+        } else if (currentPage === 3) {
+          startPage = 1;
+          endPage = 6;
+        } else if (currentPage === 1197) {
+          startPage = 1194;
+          endPage = 1197;
+        } else if (currentPage === 1196) {
+          startPage = 1193;
+          endPage = 1197;
+        } else if (currentPage === 1195) {
+          startPage = 1192;
+          endPage = 1197;
+        } else {
+          startPage = Math.max(1, currentPage - 3);
+          endPage = Math.min(totalPages, currentPage + 3);
+          if (endPage - startPage < 6) {
+            if (startPage === 1) {
+              endPage = Math.min(totalPages, startPage + 6);
+            } else if (endPage === totalPages) {
+              startPage = Math.max(1, endPage - 6);
+            }
           }
         }
       %>
